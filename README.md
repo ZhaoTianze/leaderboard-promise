@@ -3,7 +3,7 @@ Leaderboard
 
 Leaderboard backed by [Redis](http://redis.io) in Node.js, basic on Promise. 
 
-[![Build Status](https://www.npmjs.com/package/Leaderboard-Promise)](https://www.npmjs.com/package/Leaderboard-Promise)
+[![Build Status](https://www.npmjs.com/package/leaderboard-promise)](https://www.npmjs.com/package/leaderboard-promise)
 
 Installation
 ------------
