@@ -1,7 +1,7 @@
 {
   "name": "leaderboard-promise",
   "description": "Leaderboards backed by Redis in Node.js, basic on promise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "ZhaoTianze <zen_zhao@qq.com>",
   "devDependencies": {
     "mocha": "1.5.0",

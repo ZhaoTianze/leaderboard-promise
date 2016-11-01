@@ -120,6 +120,6 @@ Creates a new leaderboard or attaches to an existing leaderboard.
 
 ## License 
 
-[MIT](http://en.wikipedia.org/wiki/MIT_License#License_terms). Copyright (c) 2015 raheemmujavar &lt;raheemmujavar@gmail.com&gt;
+[MIT](http://en.wikipedia.org/wiki/MIT_License#License_terms). Copyright (c) 2015 zhaotianze &lt;zen_zhao@qq.com&gt;
 
 #### Author: [zhaotianze](https://github.com/ZhaoTianze/leaderboard-promise)
