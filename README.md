@@ -8,7 +8,7 @@ Leaderboard backed by [Redis](http://redis.io) in Node.js, basic on Promise.
 Installation
 ------------
 
-    $ npm install Leaderboard-Promise
+    $ npm install leaderboard-promise
 
 API
 ---
