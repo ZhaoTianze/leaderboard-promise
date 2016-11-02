@@ -31,48 +31,58 @@ Creates a new leaderboard or attaches to an existing leaderboard.
 
 ##Methods
 
-  - `add(member, score, [λ])`
+  - `add(member, score)`
 
     Ranks a member in the leaderboard.
 
-        lb.add('raheem', 100).then(function(){
+        lb.add('member', 100).then(function(){
           // completed, do something
         }).catch(function(error){
           //failed
         });
 
-  - `incr(member, score, [λ])`
+  - `incr(member, score)`
 
-    Increments the score of a member by provided value and ranks it in the leaderboard. Decrements if negative.
+    Increments the score of a member by provided score and ranks it in the leaderboard. Decrements if negative.
 
-        lb.incr('raheem', 2).then(function(){
+        lb.incr('member', 2).then(function(){
           // completed, do something
         }).catch(function(error){
           //failed
         });
-    now the score to the member raheem would be 102.
+    now the score to the member would be 102.
 
-  - `rank(member, λ)`
+  - `highest(member,score)`
+
+    Set a member`s highest score by provided score and ranks it in the leaderboard. If new score is less than old score in the leaderboard, it will keep the old scores.  
+
+      lb.highest('member',103).then(function(){
+        // completed, do something
+      }).catch(function(error){
+        //failed
+      });
+      now the score to the member would be 103.
+  - `rank(member)`
 
     Retrieves the rank for a member in the leaderboard.
 
-        lb.rank('raheem').then(function(rank){
+        lb.rank('member').then(function(rank){
           // rank - current position, -1 if a member doesn't
         }).catch(function(error){
           //failed
         });
 
-  - `score(member, λ)`
+  - `score(member)`
 
     Retrieves the score for a member in the leaderboard.
 
-        lb.score('raheem').then(function(score){
+        lb.score('member').then(function(score){
            // score - current score, -1 if a member doesn't
         }).catch(function(error){
           //failed
         });
 
-  - `list([page], λ)`
+  - `list([page])`
 
     Retrieves a page of leaders from the leaderboard.
 
@@ -86,7 +96,7 @@ Creates a new leaderboard or attaches to an existing leaderboard.
           // ]
         });
 
-  - `at(rank, λ)`
+  - `at(rank)`
 
     Retrieves a member on the spicified ranks.
 
@@ -99,17 +109,17 @@ Creates a new leaderboard or attaches to an existing leaderboard.
           // }
         });
 
-  - `rm(member, [λ])`
+  - `rm(member)`
 
     Removes a member from the leaderboard.
 
-        lb.rm('raheem').then(function(removed) {
+        lb.rm('member').then(function(removed) {
           // removed - false in case the removing member 
           // doesn't exist in the leaderboard.
           // true - successful remove
         });
 
-  - `total([λ])`
+  - `total()`
 
     Retrieves the total number of members in the leaderboard.
 
@@ -117,6 +127,13 @@ Creates a new leaderboard or attaches to an existing leaderboard.
           // captain obvious
         });
 
+  - `numberInScoreRange(min,max)`
+
+    Returns the number of members in the leaderboard with a score between min and max.
+
+    lb.numberInScoreRange(10,100).then(function(number){
+      // number - the number of members
+    });
 
 ## License 
 

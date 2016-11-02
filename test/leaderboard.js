@@ -149,6 +149,43 @@ describe('Leaderboard',function(){
 
 
     });
+
+    describe('"highest" method',function(){
+        // Empty database before the suite
+        before(function(done) {
+            this.client.flushdb(done);
+        });
+
+        it('should put "member1" with score 20 to the leaderboard',function(done){
+            var board = this.board;
+            board.highest('member1',20).then(function(){
+                return board.rank('member1');
+            }).then(function(rank){
+                assert.equal(rank,0);
+                done();
+            });
+        });
+
+        it('set score 10 to "member1" should not change the highest score',function(done){
+            var board = this.board;
+            board.highest('member1',10).then(function(){
+                return board.score('member1');
+            }).then(function(score){
+                assert.equal(score,20);
+                done();
+            });
+        });
+
+        it('set score 30 to "member1" should change the highest score',function(done){
+            var board = this.board;
+            board.highest('member1',30).then(function(){
+                return board.score('member1');
+            }).then(function(score){
+                assert.equal(score,30);
+                done();
+            });
+        });
+    });
 });
 
 describe('"at" method',function(){
@@ -203,7 +240,7 @@ describe('"at" method',function(){
 });
 
 
-describe('"total" method', function() {
+describe('"total" && "rm" method', function() {
     // Empty database before the suite
     before(function(done) {
       this.client.flushdb(done);
@@ -223,8 +260,44 @@ describe('"total" method', function() {
             });
         });
     });
+
+    it('should rm "member3" in the leaderboard',function(done){
+        var board = this.board;
+        board.rm('member3').then(function(removed){
+            assert.equal(removed,1);
+            return board.total();
+        }).then(function(total){
+            assert.equal(total,2);
+            done();
+        });
+    });
 });
 
+describe('"numberInScoreRange" && "membersInScoreRange" method',function(){
+    // Empty database before the suite
+    before(function(done) {
+      this.client.flushdb(done);
+    });
+
+    it('should return the number of members in the leaderboard',function(done){
+        var board = this.board;
+        async.parallel([
+          function(cb) { board.add('member1', 10).then(function(){cb()}); },
+          function(cb) { board.add('member2', 20).then(function(){cb()}); },
+          function(cb) { board.add('member3', 30).then(function(){cb()}); },
+          function(cb) { board.add('member4', 40).then(function(){cb()}); }
+        ],function(){
+            board.numberInScoreRange(10,40).then(function(num){
+                assert.equal(num,4);
+                //exclusive
+                return board.numberInScoreRange("("+10,"("+40);
+            }).then(function(num){
+                assert.equal(num,2);
+                done();
+            });
+        });
+    });
+});
 
 describe('Options', function() {
     // Empty database before the suite
