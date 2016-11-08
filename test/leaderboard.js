@@ -147,7 +147,6 @@ describe('Leaderboard',function(){
             });
         });
 
-
     });
 
     describe('"highest" method',function(){
@@ -240,7 +239,7 @@ describe('"at" method',function(){
 });
 
 
-describe('"total" && "rm" method', function() {
+describe('"total" && "rm" && "membersInRankRange" method', function() {
     // Empty database before the suite
     before(function(done) {
       this.client.flushdb(done);
@@ -258,6 +257,17 @@ describe('"total" && "rm" method', function() {
                 assert.equal(total, 3);
                 done();
             });
+        });
+    });
+
+    it('should return correct members list',function(done){
+        this.board.membersInRankRange(0,2).then(function(list){
+            assert.deepEqual(list, [
+                    {'rank':0,'member': 'member3', 'score': 30},
+                    {'rank':1,'member': 'member2', 'score': 20},
+                    {'rank':2,'member': 'member1', 'score': 10}
+                ]);
+            done();
         });
     });
 

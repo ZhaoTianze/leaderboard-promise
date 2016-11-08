@@ -3,7 +3,7 @@ Leaderboard
 
 Leaderboard backed by [Redis](http://redis.io) in Node.js, basic on Promise. 
 
-[![Build Status](https://www.npmjs.com/package/leaderboard-promise)](https://www.npmjs.com/package/leaderboard-promise)
+https://www.npmjs.com/package/leaderboard-promise
 
 Installation
 ------------
@@ -21,7 +21,7 @@ Creates a new leaderboard or attaches to an existing leaderboard.
 
 ###Options
 
-  - `pageSize` - default: `0`
+  - `pageSize` - default: `50`
 
     Page size to be used when paging through the leaderboard.
 
@@ -133,6 +133,14 @@ Creates a new leaderboard or attaches to an existing leaderboard.
 
     lb.numberInScoreRange(10,100).then(function(number){
       // number - the number of members
+    });
+
+  - `membersInRankRange(beginRank,endRank)`
+
+    Returns the list of members in the leaderboard between beginRank and endRank.
+
+    lb.membersInRankRange(10,100).then(function(list){
+      // list - the list of members
     });
 
 ## License 
