@@ -131,17 +131,17 @@ Creates a new leaderboard or attaches to an existing leaderboard.
 
     Returns the number of members in the leaderboard with a score between min and max.
 
-    lb.numberInScoreRange(10,100).then(function(number){
-      // number - the number of members
-    });
+        lb.numberInScoreRange(10,100).then(function(number){
+          // number - the number of members
+        });
 
   - `membersInRankRange(beginRank,endRank)`
 
     Returns the list of members in the leaderboard between beginRank and endRank.
 
-    lb.membersInRankRange(10,100).then(function(list){
-      // list - the list of members
-    });
+        lb.membersInRankRange(10,100).then(function(list){
+          // list - the list of members
+        });
 
 ## License 
 
